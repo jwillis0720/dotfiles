@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-DOTFILES=$HOME/GitRepos/dotfiles
+if [ -d "/dnas" ]; then
+  export DOTFILES=$HOME/repos/dotfiles
+#Mac
+else
+  export DOTFILES=$HOME/GitRepos/repos/dotfiles
+fi
 
 
 echo -e "\nCreating symlinks"

@@ -1,119 +1,55 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="mm/dd/yyyy"
-
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  vi-mode
-  )
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
-
-#MY ALIASES
-alias vax="ssh -Y jwillis@vax.scripps.edu"
-alias multi="ssh jwillis@multiseq.scripps.edu"
-alias mongoconnect="/usr/local/bin/mongo --host vacseq.mc.vanderbilt.edu --port 37201 -u willisjr -p 7Gf40dF8"
-alias mount_vaxapp='sshfs jwillis@vax.scripps.edu:/dnas/apps/ /Users/jwillis/Mounts/vax_apps -o volname=vaxapps'
-alias mount_vax='sshfs jwillis@vax.scripps.edu:/dnas/home/jwillis/ /Users/jwillis/Mounts/vax -o volname=vax'
-alias mount_multi_var='sshfs jwillis@multiseq.scripps.edu:/var/www/ /Users/jwillis/Mounts/multi_var -o volname=multi_var'
-alias umount_all='diskutil unmount force /Users/jwillis/Mounts/vax;diskutil unmount force /Users/jordanwillis/Mounts/vax_apps; diskutil unmount force ~/Mounts/multi; diskutil unmount force ~/Mounts/multi_var'
-alias mount_all='umount_all;mount_vaxapp ;mount_vax; mount_multi_var'
-alias pymol="/Applications/MacPyMOL.app/Contents/MacOS/MacPyMOL"
-alias st="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
-
-#MY ENVIROMENTS
-export PATH=/Users/jwillis/anaconda/bin/:$PATH:/opt/local/bin:/opt/local/sbin:/usr/local/bin/
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/:$DYLD_LIBRARY_PATH
-
-#HISTORY
-## Command history configuration
-if [ -z "$HISTFILE" ]; then
-    HISTFILE=$HOME/.zsh_history
+#Vax
+if [ -d "/dnas" ]; then
+  export DOTFILES=$HOME/repos/dotfiles
+#Mac
+else
+  export DOTFILES=$HOME/GitRepos/repos/dotfiles
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+export DOTZSH=$DOTFILES/zsh
+source $DOTZSH/setup_ohmyzsh.zsh
 
-# Show history
-case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='fc -fl 1' ;;
-  "dd.mm.yyyy") alias history='fc -El 1' ;;
-  "yyyy-mm-dd") alias history='fc -il 1' ;;
-  *) alias history='fc -l 1' ;;
-esac
-
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_ignore_space
-setopt hist_verify
-setopt inc_append_history
-setopt share_history # share command history data
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-alias gari="ssh jwillis@login01.scripps.edu"
+#Vax
+if [ -d "/dnas" ]; then
+  source $DOTZSH/setup_vax_alias.zsh 
+  source $DOTZSH/setup_vax_specific.zsh 
+#Mac
+else
+  source $DOTZSH/setup_mac_alias.zsh 
+  source $DOTZSH/setup_mac_specifc.zsh 
+fi
 
 
-alias g="jump"
-alias s="bookmark"
-alias d="deletemark"
-alias p="showmarks"
-alias l="showmarks"
-alias tmux="tmux -CC"
-#set -o vi
+source $DOTZSH/setup_common_alias.zsh 
 
-source ~/.mount_all.zsh
-
-POWERLINE_ROOT="/usr/local/lib/python2.7/site-packages"
-
+#MY ALIASES
+#source kkjjjjalias vax="ssh -Y jwillis@vax.scripps.edu"
+#alias multi="ssh jwillis@multiseq.scripps.edu"
+#alias mongoconnect="/usr/local/bin/mongo --host vacseq.mc.vanderbilt.edu --port 37201 -u willisjr -p 7Gf40dF8"
+#alias mount_vaxapp='sshfs jwillis@vax.scripps.edu:/dnas/apps/ /Users/jwillis/Mounts/vax_apps -o volname=vaxapps'
+#alias mount_vax='sshfs jwillis@vax.scripps.edu:/dnas/home/jwillis/ /Users/jwillis/Mounts/vax -o volname=vax'
+#alias mount_multi_var='sshfs jwillis@multiseq.scripps.edu:/var/www/ /Users/jwillis/Mounts/multi_var -o volname=multi_var'
+#alias umount_all='diskutil unmount force /Users/jwillis/Mounts/vax;diskutil unmount force /Users/jordanwillis/Mounts/vax_apps; diskutil unmount force ~/Mounts/multi; diskutil unmount force ~/Mounts/multi_var'
+#alias mount_all='umount_all;mount_vaxapp ;mount_vax; mount_multi_var'
+#alias pymol="/Applications/MacPyMOL.app/Contents/MacOS/MacPyMOL"
+#
+##MY ENVIROMENTS
+#export PATH=/Users/jwillis/anaconda/bin/:$PATH:/opt/local/bin:/opt/local/sbin:/usr/local/bin/
+#export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/:$DYLD_LIBRARY_PATH
+#
+#
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#alias gari="ssh jwillis@login01.scripps.edu"
+#
+#
+#alias g="jump"
+#alias s="bookmark"
+#alias d="deletemark"
+#alias p="showmarks"
+#alias l="showmarks"
+#alias tmux="tmux -CC"
+#
+#source ~/.mount_all.zsh
+#
+#POWERLINE_ROOT="/usr/local/lib/python2.7/site-packages"
+#
