@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "Initializing submodule(s)"
+git submodule update --init --recursive
+
 if [ -d "/dnas" ]; then
   export DOTFILES=$HOME/repos/dotfiles
 #Mac
