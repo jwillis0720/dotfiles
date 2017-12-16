@@ -4,7 +4,7 @@ if [ -d "/dnas" ]; then
   export DOTFILES=$HOME/repos/dotfiles
 #Mac
 else
-  export DOTFILES=$HOME/GitRepos/repos/dotfiles
+  export DOTFILES=$HOME/GitRepos/dotfiles
 fi
 
 
@@ -22,10 +22,10 @@ for file in $linkables ; do
 done
 
 
-echo -e "\nLinking VIM Config"
+echo -e "\nLinking NVIM Config"
 echo "=============================="
 target="$HOME/.vim"
-VIMCONFIG="$DOTFILES/vim/vim.config"
+VIMCONFIG="$DOTFILES/nvim/nvim.config"
 if [ -e $target ]; then
     echo "~${target#$HOME} already exists... Skipping."
 else
