@@ -10,6 +10,16 @@ else
   export DOTFILES=$HOME/GitRepos/dotfiles
 fi
 
+echo -e "\nLinking ZSHRC "
+echo "=============================="
+target="$HOME/.zshrc"
+ZMRC="$DOTFILES/nvim/vimrc.symlink"
+if [ -e $target ]; then
+    echo "~${target#$HOME} already exists... Skipping."
+else
+    echo "Creating symlink for $VIMCONFIG"
+    ln -s $ZMRC $target
+fi
 
 echo -e "\nLinking NVIMRC "
 echo "=============================="
