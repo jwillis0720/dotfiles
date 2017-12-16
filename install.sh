@@ -11,18 +11,16 @@ else
 fi
 
 
-echo -e "\nCreating symlinks"
+echo -e "\nLinking NVIMRC "
 echo "=============================="
-linkables=$( find -H "$DOTFILES" -name '*.symlink' )
-for file in $linkables ; do
-    target="$HOME/.$( basename $file '.symlink' )"
-    if [ -e $target ]; then
-        echo "~${target#$HOME} already exists... Skipping."
-    else
-        echo "Creating symlink for $file"
-        ln -s $file $target
-    fi
-done
+target="$HOME/.config/nvim/init.vim"
+VIMRC="$DOTFILES/nvim/vimrc.symlink"
+if [ -e $target ]; then
+    echo "~${target#$HOME} already exists... Skipping."
+else
+    echo "Creating symlink for $VIMCONFIG"
+    ln -s $VIMRC $target
+fi
 
 
 echo -e "\nLinking NVIM Config"
@@ -35,3 +33,17 @@ else
     echo "Creating symlink for $VIMCONFIG"
     ln -s $VIMCONFIG $target
 fi
+
+
+#echo -e "\nCreating symlinks"
+#echo "=============================="
+#linkables=$( find -H "$DOTFILES" -name '*.symlink' )
+#for file in $linkables ; do
+#    target="$HOME/.$( basename $file '.symlink' )"
+#    if [ -e $target ]; then
+#        echo "~${target#$HOME} already exists... Skipping."
+#    else
+#        echo "Creating symlink for $file"
+#        ln -s $file $target
+#    fi
+#done
