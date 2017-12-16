@@ -27,7 +27,7 @@ update_symlink () {
 
 echo -e "\nLinking ZSHRC "
 echo "=============================="
-update_symlink "$HOME/.zshrc" "$DOTFILES/nvim/vimrc.symlink"
+update_symlink "$HOME/.zshrc" "$DOTFILES/zsh/zshrc.symlink"
 
 
 echo -e "\nLinking NVIMRC "
