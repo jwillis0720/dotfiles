@@ -10,50 +10,31 @@ else
   export DOTFILES=$HOME/GitRepos/dotfiles
 fi
 
+update_symlink () {
+  local SRC=$1
+  local DST=$2
+  if [ -e $DST ]; then
+    echo " ${SRC} already exists... checking if it points."
+    if [ "$(readlink -- "$SRC")" = $DST ]; then
+      echo " $SRC points towars $(readlink -- "$SRC")....skipping"
+      echo "" 
+    else
+      echo " Creating symlink for $DST to $SRC "
+      ln -sfv $DST $SRC
+    fi
+  fi
+}
+
 echo -e "\nLinking ZSHRC "
 echo "=============================="
-target="$HOME/.zshrc"
-ZMRC="$DOTFILES/nvim/vimrc.symlink"
-if [ -e $target ]; then
-    echo "~${target#$HOME} already exists... Skipping."
-else
-    echo "Creating symlink for $VIMCONFIG"
-    ln -s $ZMRC $target
-fi
+update_symlink "$HOME/.zshrc" "$DOTFILES/nvim/vimrc.symlink"
+
 
 echo -e "\nLinking NVIMRC "
 echo "=============================="
-target="$HOME/.config/nvim/init.vim"
-VIMRC="$DOTFILES/nvim/vimrc.symlink"
-if [ -e $target ]; then
-    echo "~${target#$HOME} already exists... Skipping."
-else
-    echo "Creating symlink for $VIMCONFIG"
-    ln -s $VIMRC $target
-fi
+update_symlink "$HOME/.config/nvim/init.vim" "$DOTFILES/nvim/vimrc.symlink"
 
 
-echo -e "\nLinking NVIM Config"
+echo -e "\nLinking Neovim config"
 echo "=============================="
-target="$HOME/.vim"
-VIMCONFIG="$DOTFILES/nvim/nvim.config"
-if [ -e $target ]; then
-    echo "~${target#$HOME} already exists... Skipping."
-else
-    echo "Creating symlink for $VIMCONFIG"
-    ln -s $VIMCONFIG $target
-fi
-
-
-#echo -e "\nCreating symlinks"
-#echo "=============================="
-#linkables=$( find -H "$DOTFILES" -name '*.symlink' )
-#for file in $linkables ; do
-#    target="$HOME/.$( basename $file '.symlink' )"
-#    if [ -e $target ]; then
-#        echo "~${target#$HOME} already exists... Skipping."
-#    else
-#        echo "Creating symlink for $file"
-#        ln -s $file $target
-#    fi
-#done
+update_symlink "$HOME/.vim" "$DOTFILES/nvim/nvim.config"
