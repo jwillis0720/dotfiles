@@ -38,3 +38,10 @@ update_symlink "$HOME/.config/nvim/init.vim" "$DOTFILES/nvim/vimrc.symlink"
 echo -e "\nLinking Neovim config"
 echo "=============================="
 update_symlink "$HOME/.vim" "$DOTFILES/nvim/nvim.config"
+
+
+
+echo -e "\nLinking tmux config"
+echo "=============================="
+update_symlink "$HOME/.tmux.conf" "$DOTFILES/tmux/tmux.conf.symlink"
+update_symlink "$HOME/.dotfiles" "$DOTFILES"

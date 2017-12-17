@@ -1,7 +1,7 @@
 if [ -d "/dnas" ]; then
   ZSH_THEME="xiong-chiamiov-plus"
 else
-  ZSH_THEME="agnoster"
+  ZSH_THEME="jispwoso"
 export ZSH=$HOME/.oh-my-zsh
 fi
 ENABLE_CORRECTION="true"
@@ -39,3 +39,6 @@ setopt share_history # share command history data
 
 #Common Enviroments
 export SSH_KEY_PATH=$HOME/.ssh/rsa_id
+
+#Common PATHS
+export PATH=$PATH:$HOME/.dotfiles/bin
