@@ -1,7 +1,7 @@
 if [ -d "/dnas" ]; then
   ZSH_THEME="xiong-chiamiov-plus"
 else
-  ZSH_THEME="jispwoso"
+  ZSH_THEME="xiong-chiamiov-plus"
 export ZSH=$HOME/.oh-my-zsh
 fi
 ENABLE_CORRECTION="true"
