@@ -14,8 +14,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 " You complete me - complete type
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
+" Try JEDI
+Plugin 'davidhalter/jedi-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -97,3 +99,10 @@ nnoremap <Leader>vm :e ~/.vimrc<CR>
 "vim airline - a powerline alternative
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
+
+
+"let g:python3_host_prog  = '/dnas/apps/anaconda/bin/python'
+"let g:ycm_python_binary_path = '/dnas/apps/anaconda/bin/python'
+
+let g:loaded_python_provider=1
+let g:loaded_python3_provider=0
