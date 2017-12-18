@@ -4,7 +4,9 @@ else
   ZSH_THEME="xiong-chiamiov-plus"
 export ZSH=$HOME/.oh-my-zsh
 fi
+export ZSH=$HOME/.oh-my-zsh
 ENABLE_CORRECTION="true"
+
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
 plugins=(git vi-mode)
