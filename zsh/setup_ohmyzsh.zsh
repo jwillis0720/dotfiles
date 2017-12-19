@@ -1,14 +1,21 @@
 if [ -d "/dnas" ]; then
   ZSH_THEME="xiong-chiamiov-plus"
 else
-  ZSH_THEME="jispwoso"
+  ZSH_THEME="xiong-chiamiov-plus"
 fi
 export ZSH=$HOME/.oh-my-zsh
 ENABLE_CORRECTION="true"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="mm/dd/yyyy"
-plugins=(git vi-mode)
+if [[ `who | grep jwillis | awk '{print($NF)}'` == *"vpn"* ]]; then
+    plugins=(vi-mode)
+    ZSH_THEME="xiong-chiamiov"
+else
+    plugins=(git vi-mode)
+fi
+
+
 source $ZSH/oh-my-zsh.sh
 
 
