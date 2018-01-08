@@ -103,6 +103,10 @@ bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-
 #Bind kill pne to x so it doens't sk for confirm
 bind x kill-pane
 
+# pane movement
+bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
+bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
+bind-key b break-pane
 #
 ###############################
 #### Color & Style Settings ###
