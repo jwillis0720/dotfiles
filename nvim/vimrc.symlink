@@ -19,6 +19,9 @@ Plugin 'vim-airline/vim-airline-themes'
 " Try JEDI
 "Plugin 'davidhalter/jedi-vim'
 
+Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -87,14 +90,21 @@ set foldlevel=99
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
 
+nnoremap <space>z zR
 "don't show .pyc files
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 ",c is short for our system clipboard register
-noremap <Leader>c "*
+nnoremap <Leader>c "*
 
 "open vimrc 
 nnoremap <Leader>vm :e ~/.vimrc<CR>
+
+
+nmap <Leader>lg :!w<Enter>:silent !latexmk -pvc -pdf % &<Enter>
+
+"Save file 
+nmap <Leader>w :w<CR>
 
 "vim airline - a powerline alternative
 let g:airline_powerline_fonts = 1
@@ -106,3 +116,8 @@ let g:airline_theme='badwolf'
 
 let g:loaded_python_provider=1
 let g:loaded_python3_provider=0
+
+
+"start searching for highlighted text
+vnoremap // y/<C-R>"<CR>
+
